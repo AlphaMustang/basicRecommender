@@ -1,15 +1,10 @@
 # Imports
 import pandas as pd
+from cleaning import openMetadata
 
-# Importing the metadata file from the CSV
-metadata = pd.read_csv('movies_metadata.csv', low_memory=False)
-
-# Removing data for films which had 0 user votes as it is useless for us. 
-metadata = metadata[metadata.vote_count != 0]
-
+metadata = openMetadata()
 # Calculating the mean values for all ratings. 
 meanValueOfAllRatings = metadata.iloc[:,22].mean()
-print(meanValueOfAllRatings)
 
 # Calculating the number of votes which puts a film in the top 10% of votes
 # cast. (Basically it's in the top 10 of people who voted for it).
