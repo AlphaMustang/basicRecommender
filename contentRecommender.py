@@ -17,6 +17,18 @@ tfidf = TfidfVectorizer(stop_words='english')
 # the data.
 tfidfMatrix = tfidf.fit_transform(metadata['overview'])
 
-#from sklearn.metrics.pairwise import linear_kernel
+from sklearn.metrics.pairwise import cosine_similarity
+
+row = tfidfMatrix[0,:]
+
 # Compute the cosine similarity matrix
-#cosineSim = linear_kernel(tfidfMatrix.copy(), tfidfMatrix.copy())
+cosineSim = cosine_similarity(row, tfidfMatrix)
+
+cosineMatrix = []
+
+cosineMatrix.append(cosineSim)
+
+row = tfidfMatrix[1,:]
+cosineSim = cosine_similarity(row, tfidfMatrix)
+cosineMatrix.append(cosineSim)
+print(cosineMatrix[0][0][0])
